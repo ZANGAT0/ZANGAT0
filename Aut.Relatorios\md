@@ -1,0 +1,72 @@
+Sub System_for_download()
+
+'Salvar arquivo
+ThisWorkbook.Save
+
+'X If MsgBox("A macro irá iniciar, Certifique-se do tempo necessario e não utilize o computador até o fim da operação!", vbYesNo + vbInformation, "Atenção!") = vbYes Then
+
+'Declarando variaveis
+Dim URL As String
+Dim Relatorio As String
+Dim Final As String
+
+Relatorio = Cells(2, 3).Value
+Final = "I16"
+
+'1 - Abrir frotalog
+
+URL = "https://www.frotalog.com.br/MBServerO/report.do"
+ActiveWorkbook.FollowHyperlink URL
+
+'Time
+Application.Wait (Now + TimeValue("00:00:10"))
+
+'2 - Pesquisar relatorio desejado
+
+Application.SendKeys ("^{f}")
+
+Call SendKeys(Relatorio, True)
+Application.Wait (Now + TimeValue("00:00:01"))
+
+Application.SendKeys ("{ENTER}")
+Application.Wait (Now + TimeValue("00:00:01"))
+
+'3 - Selecionar
+
+Application.SendKeys ("{ESC}")
+Application.Wait (Now + TimeValue("00:00:01"))
+
+'4 - Entrar dentro do relatorio
+
+Application.SendKeys ("~")
+Application.Wait (Now + TimeValue("00:00:01"))
+
+Application.SendKeys ("^{f}")
+Call SendKeys(Final, True)
+Application.Wait (Now + TimeValue("00:00:01"))
+
+Application.SendKeys ("{ESC}")
+Application.SendKeys ("{TAB}")
+Application.SendKeys ("~")
+Application.Wait (Now + TimeValue("00:00:01"))
+
+'5 - Selecionar empresa
+
+Call SendKeys("JSL", True)
+Application.SendKeys ("~")
+
+'6 - Selecionar periodo
+
+
+
+'7 - Selecionar formato
+'8 - Baixar
+'9 - Listar relatorios após 10min
+'10 - Abrir hiperlinks bara realizar download
+'11 - Abrir download de pastas
+'12 - Copiar novos downloads e mover para pasta de backup.
+
+'X Else
+'X End If
+
+End Sub
